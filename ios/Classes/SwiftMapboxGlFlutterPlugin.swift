@@ -1,6 +1,6 @@
 import Flutter
 import Foundation
-import Mapbox
+import MapboxMaps
 import UIKit
 
 public class SwiftMapboxGlFlutterPlugin: NSObject, FlutterPlugin {

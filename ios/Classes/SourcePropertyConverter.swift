@@ -1,5 +1,5 @@
 import Foundation
-import Mapbox
+import MapboxMaps
 
 class SourcePropertyConverter {
     class func interpretTileOptions(properties: [String: Any]) -> [MGLTileSourceOption: Any] {

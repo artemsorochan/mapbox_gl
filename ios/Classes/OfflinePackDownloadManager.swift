@@ -7,7 +7,7 @@
 
 import Flutter
 import Foundation
-import Mapbox
+import MapboxMaps
 
 class OfflinePackDownloader {
     // MARK: Properties
