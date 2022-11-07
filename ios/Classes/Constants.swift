@@ -1,5 +1,4 @@
-import Mapbox
-import MapboxAnnotationExtension
+import MapboxMaps
 
 /*
  * The mapping is based on the values defined here:
