@@ -1,4 +1,4 @@
-# Flutter Mapbox GL
+# Flutter Mapbox GL 
 
 > **Please note that this project is community driven and is not an official Mapbox product.** 
 > 
