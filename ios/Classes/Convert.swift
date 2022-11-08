@@ -5,7 +5,7 @@ class Convert {
         guard let options = options as? [String: Any] else { return }
         if let cameraTargetBounds = options["cameraTargetBounds"] as? [[[Double]]] {
             delegate
-                .setCameraTargetBounds(bounds: MGLCoordinateBounds.fromArray(cameraTargetBounds[0]))
+                .setCameraTargetBounds(bounds: CoordinateBounds.fromArray(cameraTargetBounds[0]))
         }
         if let compassEnabled = options["compassEnabled"] as? Bool {
             delegate.setCompassEnabled(compassEnabled: compassEnabled)
@@ -38,7 +38,7 @@ class Convert {
             delegate.setMyLocationEnabled(myLocationEnabled: myLocationEnabled)
         }
         if let myLocationTrackingMode = options["myLocationTrackingMode"] as? UInt,
-           let trackingMode = MGLUserTrackingMode(rawValue: myLocationTrackingMode)
+           let trackingMode = UserTrackingMode(rawValue: myLocationTrackingMode)
         {
             delegate.setMyLocationTrackingMode(myLocationTrackingMode: trackingMode)
         }
@@ -51,7 +51,7 @@ class Convert {
             delegate.setLogoViewMargins(x: logoViewMargins[0], y: logoViewMargins[1])
         }
         if let compassViewPosition = options["compassViewPosition"] as? UInt,
-           let position = MGLOrnamentPosition(rawValue: compassViewPosition)
+           let position = OrnamentPosition(rawValue: compassViewPosition)
         {
             delegate.setCompassViewPosition(position: position)
         }
@@ -65,18 +65,18 @@ class Convert {
             )
         }
         if let attributionButtonPosition = options["attributionButtonPosition"] as? UInt,
-           let position = MGLOrnamentPosition(rawValue: attributionButtonPosition)
+           let position = OrnamentPosition(rawValue: attributionButtonPosition)
         {
             delegate.setAttributionButtonPosition(position: position)
         }
     }
 
-    class func parseCameraUpdate(cameraUpdate: [Any], mapView: MGLMapView) -> MGLMapCamera? {
+    class func parseCameraUpdate(cameraUpdate: [Any], mapView: MapView) -> MapCamera? {
         guard let type = cameraUpdate[0] as? String else { return nil }
         switch type {
         case "newCameraPosition":
             guard let cameraPosition = cameraUpdate[1] as? [String: Any] else { return nil }
-            return MGLMapCamera.fromDict(cameraPosition, mapView: mapView)
+            return MapCamera.fromDict(cameraPosition, mapView: mapView)
         case "newLatLng":
             guard let coordinate = cameraUpdate[1] as? [Double] else { return nil }
             let camera = mapView.camera
@@ -89,7 +89,7 @@ class Convert {
             guard let paddingRight = cameraUpdate[4] as? CGFloat else { return nil }
             guard let paddingBottom = cameraUpdate[5] as? CGFloat else { return nil }
             return mapView.cameraThatFitsCoordinateBounds(
-                MGLCoordinateBounds.fromArray(bounds),
+                CoordinateBounds.fromArray(bounds),
                 edgePadding: UIEdgeInsets(
                     top: paddingTop,
                     left: paddingLeft,
@@ -103,7 +103,7 @@ class Convert {
             let camera = mapView.camera
             camera.centerCoordinate = CLLocationCoordinate2D.fromArray(coordinate)
             let altitude = getAltitude(zoom: zoom, mapView: mapView)
-            return MGLMapCamera(
+            return MapCamera(
                 lookingAtCenter: camera.centerCoordinate,
                 altitude: altitude,
                 pitch: camera.pitch,
@@ -166,8 +166,8 @@ class Convert {
         return nil
     }
 
-    class func getZoom(mapView: MGLMapView) -> Double {
-        return MGLZoomLevelForAltitude(
+    class func getZoom(mapView: MapView) -> Double {
+        return ZoomLevelForAltitude(
             mapView.camera.altitude,
             mapView.camera.pitch,
             mapView.camera.centerCoordinate.latitude,
@@ -175,8 +175,8 @@ class Convert {
         )
     }
 
-    class func getAltitude(zoom: Double, mapView: MGLMapView) -> Double {
-        return MGLAltitudeForZoomLevel(
+    class func getAltitude(zoom: Double, mapView: MapView) -> Double {
+        return AltitudeForZoomLevel(
             zoom,
             mapView.camera.pitch,
             mapView.camera.centerCoordinate.latitude,

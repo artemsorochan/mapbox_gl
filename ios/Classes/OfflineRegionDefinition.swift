@@ -14,8 +14,8 @@ class OfflineRegionDefinition {
         self.maxZoom = maxZoom
     }
 
-    func getBounds() -> MGLCoordinateBounds {
-        return MGLCoordinateBounds(
+    func getBounds() -> CoordinateBounds {
+        return CoordinateBounds(
             sw: CLLocationCoordinate2D(latitude: bounds[0][0], longitude: bounds[0][1]),
             ne: CLLocationCoordinate2D(latitude: bounds[1][0], longitude: bounds[1][1])
         )
@@ -45,8 +45,8 @@ class OfflineRegionDefinition {
         ]
     }
 
-    func toMGLTilePyramidOfflineRegion() -> MGLTilePyramidOfflineRegion {
-        return MGLTilePyramidOfflineRegion(
+    func toTilePyramidOfflineRegion() -> TilePyramidOfflineRegion {
+        return TilePyramidOfflineRegion(
             styleURL: mapStyleUrl,
             bounds: getBounds(),
             fromZoomLevel: minZoom,

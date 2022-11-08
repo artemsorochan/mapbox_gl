@@ -4,7 +4,7 @@
 import MapboxMaps
 
 class LayerPropertyConverter {
-    class func addSymbolProperties(symbolLayer: MGLSymbolStyleLayer, properties: [String: String]) {
+    class func addSymbolProperties(symbolLayer: SymbolStyleLayer, properties: [String: String]) {
         for (propertyName, propertyValue) in properties {
             let expression = interpretExpression(
                 propertyName: propertyName,
@@ -130,7 +130,7 @@ class LayerPropertyConverter {
         }
     }
 
-    class func addCircleProperties(circleLayer: MGLCircleStyleLayer, properties: [String: String]) {
+    class func addCircleProperties(circleLayer: CircleStyleLayer, properties: [String: String]) {
         for (propertyName, propertyValue) in properties {
             let expression = interpretExpression(
                 propertyName: propertyName,
@@ -170,7 +170,7 @@ class LayerPropertyConverter {
         }
     }
 
-    class func addLineProperties(lineLayer: MGLLineStyleLayer, properties: [String: String]) {
+    class func addLineProperties(lineLayer: LineStyleLayer, properties: [String: String]) {
         for (propertyName, propertyValue) in properties {
             let expression = interpretExpression(
                 propertyName: propertyName,
@@ -218,7 +218,7 @@ class LayerPropertyConverter {
         }
     }
 
-    class func addFillProperties(fillLayer: MGLFillStyleLayer, properties: [String: String]) {
+    class func addFillProperties(fillLayer: FillStyleLayer, properties: [String: String]) {
         for (propertyName, propertyValue) in properties {
             let expression = interpretExpression(
                 propertyName: propertyName,
@@ -251,7 +251,7 @@ class LayerPropertyConverter {
     }
 
     class func addFillExtrusionProperties(
-        fillExtrusionLayer: MGLFillExtrusionStyleLayer,
+        fillExtrusionLayer: FillExtrusionStyleLayer,
         properties: [String: String]
     ) {
         for (propertyName, propertyValue) in properties {
@@ -285,7 +285,7 @@ class LayerPropertyConverter {
         }
     }
 
-    class func addRasterProperties(rasterLayer: MGLRasterStyleLayer, properties: [String: String]) {
+    class func addRasterProperties(rasterLayer: RasterStyleLayer, properties: [String: String]) {
         for (propertyName, propertyValue) in properties {
             let expression = interpretExpression(
                 propertyName: propertyName,
@@ -318,7 +318,7 @@ class LayerPropertyConverter {
     }
 
     class func addHillshadeProperties(
-        hillshadeLayer: MGLHillshadeStyleLayer,
+        hillshadeLayer: HillshadeStyleLayer,
         properties: [String: String]
     ) {
         for (propertyName, propertyValue) in properties {
@@ -349,7 +349,7 @@ class LayerPropertyConverter {
     }
 
     class func addHeatmapProperties(
-        heatmapLayer: MGLHeatmapStyleLayer,
+        heatmapLayer: HeatmapStyleLayer,
         properties: [String: String]
     ) {
         for (propertyName, propertyValue) in properties {
